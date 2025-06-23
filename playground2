@@ -1,0 +1,217 @@
+1. Engagement fort de l'équipe sur l'ongoing monitoring
+   Julien et Alban sont très motivés pour prendre en charge une partie significative de l’"ongoing monitoring". Ils ont compris rapidement les enjeux en voyant la table issue de la cartographie. Cela signifie que l’équipe est bien alignée sur les objectifs, et prête à investir du temps et des ressources pour concrétiser cette démarche.
+
+2. Approche de priorisation par valeur/coût
+   Une démarche structurée de priorisation va être menée, visant à classer les actions selon leur valeur ajoutée et leur coût. Cela inclura notamment les contrôles, les sources de données, et leur lien. Tu seras impliquée dans ce processus, notamment pour structurer l’ordre dans lequel attaquer les sujets.
+
+3. Lien entre données et contrôles
+   Tu travailles activement à établir une cartographie fine entre les contrôles et les données qu’ils mobilisent. C’est une pièce maîtresse pour évaluer la faisabilité technique et l’automatisation. Cela permet aussi d’identifier les points de blocage (ex. : données manuelles vs. accessibles via data lake).
+
+4. Accès aux ressources techniques (ingestion, traitements)
+   Julien a signalé que des moyens techniques importants (équipe à Bangalore, ingestion de données, retraitements) peuvent être mis à disposition. Cela ouvre la voie à un prototypage plus ambitieux, sans te surcharger des aspects les plus fastidieux.
+
+5. Structuration et scoring des contrôles
+   Tu souhaites structurer les informations collectées (notamment via les entretiens avec Éric) pour dégager des scores (valeur, faisabilité, fréquence, etc.) permettant de prioriser les contrôles. Cela facilitera les arbitrages collectifs lors des échanges avec Julien, Alban et Xavier.
+
+6. Gouvernance : faible priorité métier mais forte valeur en monitoring
+   Les contrôles de gouvernance sont perçus comme peu prioritaires par les opérationnels car peu fréquents et demandant une analyse humaine. Néanmoins, ils ont une forte valeur en matière de risk assessment et d’automatisation via le monitoring, ce qui en fait des candidats intéressants à moyen terme.
+
+7. Partie "alertes et filtrage" : cœur du métier, priorité forte
+   Le filtrage des transactions et la gestion des alertes est le cœur opérationnel du métier. C’est là que se concentre la demande des parties prenantes (Éric, Fleur). Cela représente un challenge analytique intéressant et un terrain pour proposer des approches innovantes (classification, scoring de gravité…).
+
+8. Explicabilité : enjeu central
+   Il faut impérativement éviter les modèles opaques. L’objectif est de construire des approches analytiques transparentes (ex. : règles, classification simple) pour que les utilisateurs comprennent les alertes générées. Le clustering actuel est critiqué pour son manque d’interprétabilité.
+
+9. Redéfinir la notion d’anomalie
+   Tu soulèves un point crucial : avant même d’implémenter des modèles, il faut définir ce qu’est une anomalie dans ce contexte. Cela implique une analyse profonde des comportements normaux/attendus (par client, par moment, par contexte) pour construire des features pertinentes.
+
+10. Objectif final : fournir des bornes décisionnelles claires
+    Quel que soit le modèle ou la méthode, le résultat final doit permettre d’assortir les décisions d’alertes de seuils clairs, justifiables, pour que l’auditeur ou l’analyste sache pourquoi une transaction est suspecte, et ait des moyens d’action concrets.
+
+11. Prochaine étape : finalisation des entretiens et restitution
+    Tu prévois de finaliser les entretiens avec Éric d’ici mercredi. Ensuite, tu reviendras vers l’équipe (Julien, Alban, Xavier) avec une première restitution (scoring, priorisation) pour organiser la suite du projet de manière structurée.
+________________________________________________________________________
+Pour résumer, structurer et rendre un peu actionnable tout ce qui a été dit (et aussi pour poser des bases solides pour le POC), voici une synthèse des idées clés avec une première proposition de cadrage :
+
+🎯 Objectif central
+Construire une base graphe qui permet de représenter les connexions entre les données, les activités métiers, les contrôles, les risques et les BU, pour piloter plus intelligemment l’activité (vision opérationnelle + gouvernance des données + innovation).
+
+🧩 Éléments constitutifs du graphe
+Type de nœud	Exemples concrets	Données sources
+BU / OU	SGRF, BDDF, etc.	Arborescence SAP / APRC
+Activités	Traitement des alertes, vérification KYC	Cartographie processus
+Contrôles	FCCR-21, FCCR-54, etc.	AIMS, ongoing monitoring
+Risques	Blanchiment, fraude documentaire	Carto risques
+Données	Table TRANSACTIONS_CLIENTS, KRI_REPORT	Data catalog SNE / Lucide
+Outils / systèmes	Tolks, AIMS, BI, Lucide	Recensement outils
+Indicateurs	Nbre d'EDS, pertes opérationnelles	FCCR, reporting FCC
+
+🔗 Types de liens
+Type de lien	Exemple
+exerce	BU → activité
+exposé_à	activité → risque
+contrôlé_par	activité → contrôle
+s’appuie_sur	contrôle → table de données
+implémenté_dans	contrôle → outil
+dépend_de	donnée → système source
+mesure	indicateur → risque ou activité
+lié_à	alerte FCCR → déclaration de soupçon (Tolks)
+
+🔍 Fonctions clés du graphe
+Requêtage complexe et visuel : "montre-moi tous les contrôles automatisés liés à des risques de blanchiment opérés dans SGRF utilisant des données de type transactionnel."
+
+Navigation transverse (via traversée de graphe) pour passer d’une donnée brute à sa justification métier ou inversement.
+
+Visualisation des chemins critiques : automatisation des contrôles, sources faibles, surcharges analytiques potentielles.
+
+Scoring / seuils via métriques topologiques : centralité, nombre de dépendances, dispersion des données.
+
+🛠️ Techno suggérée
+ArangoDB : simple, portable, pas besoin de droits admin.
+
+Fichiers CSV pour ingestion initiale (référentiels nœuds + liens).
+
+Script Python pour création auto des arangofiles à partir des dumps / extractions SNE.
+
+🚧 Approche projet (proposée)
+Étape	Action	Livrable
+1. Cadrage minimal	Recenser 5 BU, 10 activités, 10 contrôles, 10 tables	Mini graphe
+2. Structuration modèle graphe	Définir types de nœuds et liens	Modèle Arango
+3. Ingestion POC	Script CSV vers Arango + visualisation	Interface Arango locale
+4. Cas d’usage exploratoires	2–3 requêtes métiers clés	Slides / pitch
+5. Démo à Alban / Julien	Elevator pitch + POC	Graphe interactif prêt à enrichir
+
+📌 Ce qui est essentiel à décider très tôt
+Le point d’entrée : SNE, ou APRC, ou contrôle FCCR ?
+
+Le cas d’usage métier phare : ex. “EDS vs pertes opérationnelles vs statut FCCR”.
+
+Un langage commun pour documenter les liens (les verbes entre les nœuds).
+
+Un “propriétaire fonctionnel” : qui valide les associations métier ?
+
+
+
+Très bien ! Voici une première **proposition de schéma visuel** suivie d’un **document de cadrage** pour poser les bases du projet que tu viens de décrire (construction d’un graphe de connaissance métier à partir des données existantes, en particulier dans le contexte KYC/FCCR/contrôle, avec ArangoDB ou autre base graphe).
+
+---
+
+### 🧠 **Schéma visuel — Architecture fonctionnelle du graphe métier**
+
+```
+[Nœud : Organisation Unit] --(fait partie de)--> [Nœud : BU/SU]
+         |
+         +--(porte)--> [Nœud : Activité]
+                          |
+                          +--(exposée à)--> [Nœud : Risque]
+                          +--(implique)--> [Nœud : Processus]
+                                               |
+                                               +--(contrôlé par)--> [Nœud : Contrôle]
+                                                                         |
+                                                                         +--(automatisé par)--> [Nœud : Script / Job]
+                                                                         +--(s’appuie sur)--> [Nœud : Table / Source de donnée]
+                                                                                                      |
+                                                                                                      +--(contient)--> [Nœud : Champ]
+                                                                                                      +--(traite)--> [Nœud : Transaction / Client]
+                                                                                                      +--(alimente)--> [Nœud : Déclaration de soupçon]
+```
+
+👉 Chaque flèche est un **type de lien** (collection d’arêtes dans ArangoDB) et chaque entité (ex : BU, Activité, Table, Contrôle, etc.) est une **collection de nœuds**.
+
+---
+
+## 📄 Document de cadrage : Projet de Graphe de Connaissance Opérationnelle
+
+### 1. **Objectif**
+
+Construire un graphe de connaissance métier interconnectant les entités clés de l’organisation (unités, activités, processus, contrôles, données, risques…) afin de :
+
+* Donner une **vue synthétique** et **navigable** de l’écosystème opérationnel.
+* Permettre des **analyses croisées** (ex : lien entre KYC, risques déclarés, contrôles, tables métiers…).
+* Servir de **socle pour l’automatisation intelligente** (identification des trous de contrôle, maillage des données, détection d’anomalies).
+
+---
+
+### 2. **Portée**
+
+#### Phase 1 (POC SNE)
+
+* Cadrer et modéliser une première base graph autour de la zone SNE.
+* Intégrer :
+
+  * BU/SU
+  * Activités
+  * Risques
+  * Contrôles manuels/automatisés
+  * Tables sources
+  * Champs clés
+  * Données clients / transactions / alertes FCCR
+  * Déclarations de soupçon
+
+#### Phase 2
+
+* Extension à d’autres périmètres (APRC, Retail, etc.)
+* Ajout de couches temporelles / historiques
+* Intégration avec outils BI, AIMS, Lucidchart, etc.
+
+---
+
+### 3. **Technologie**
+
+* **Base graph choisie :** ArangoDB (légère, portable, open-source)
+* **Langage de requête :** AQL (Arango Query Language)
+* **Ingestion des données :** via scripts Python / CSV / connecteurs API
+* **Visualisation :** UI Arango native dans un premier temps, puis outillage via dashboard Lucid ou autre si besoin
+
+---
+
+### 4. **Rôles & responsabilités**
+
+| Rôle                      | Nom / Fonction    | Mission principale                                         |
+| ------------------------- | ----------------- | ---------------------------------------------------------- |
+| Product Owner / Vision    | William           | Définir le cadre, les usages, prioriser la structure       |
+| Data Architect            | \[à définir]      | Concevoir le modèle graphe, ingestion, modélisation        |
+| Data Analyst / Builder    | \[to be assigned] | Rechercher les données, définir les relations, implémenter |
+| Référent Métier (FCC/KYC) | \[Julien ?]       | Apporter la vision métier, valider les correspondances     |
+| Sponsor / Direction       | Alban / Julien    | Arbitrage, support, moyens                                 |
+
+---
+
+### 5. **Livrables attendus**
+
+* 📘 Modèle conceptuel du graphe (graph schema)
+* 🧩 Référentiel des nœuds (collections + propriétés)
+* 🧭 Référentiel des relations (types de lien + sens + sémantique)
+* 🗃️ Jeu de données de départ (extrait SNE)
+* ⚙️ Fichier de configuration ArangoDB (.json/.csv/.graphml)
+* 🖥️ Interface de navigation (prototype visualisable)
+
+---
+
+### 6. **Planning indicatif (POC SNE)**
+
+| Semaine | Étape                                               |
+| ------- | --------------------------------------------------- |
+| S1      | Définition du périmètre SNE + collecte des fichiers |
+| S2      | Modélisation initiale du graphe                     |
+| S3      | Ingestion des premiers nœuds et relations           |
+| S4      | Test de navigation + premières requêtes AQL         |
+| S5      | Itération + extension à la couche contrôle          |
+| S6      | Restitution + arbitrage sur industrialisation       |
+
+---
+
+### 7. **Risques à anticiper**
+
+* Dispersion des sources (besoin de centralisation minimale)
+* Non-exhaustivité des relations (à compenser par des hypothèses guidées)
+* Charge mentale : éviter l’effet “info paralysis” en priorisant les vues utiles
+
+---
+
+Souhaites-tu que je t’aide à :
+
+* Créer une première **base ArangoDB** avec des exemples ?
+* Préparer une **présentation pour Julien / Alban** ?
+* Mettre ça dans un **Miro / Figma / Lucidchart** pour partage visuel ?
+
