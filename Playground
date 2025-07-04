@@ -1,0 +1,22 @@
+Voici un script structuré et fluide pour présenter la slide “Clés de succès”, à lire à l’oral lors de ta présentation. Il est clair, synthétique, mais va suffisamment dans le détail pour montrer que tout a été bien anticipé :
+
+⸻
+
+🗝️ “Pour garantir le bon déploiement et la montée en puissance du projet, plusieurs clés de succès ont été identifiées.
+	1.	D’abord, l’accès à la donnée.
+Il est essentiel d’ouvrir les droits de requêtage sur LUCID, qui est notre socle technique d’interrogation des données. Sans cela, aucun contrôle ne pourra être réellement industrialisé ni exécuté efficacement.
+	2.	Ensuite, l’environnement de travail.
+Un espace de staging ou une machine dédiée est nécessaire pour le développement, notamment pour tout ce qui touche au MLOps/DevOps. Cela permet d’avoir un cadre de travail stable pour les tests et le déploiement des contrôles.
+	3.	Côté montée en compétence, plusieurs actions sont prévues :
+	•	Une formation ACAMS - Intro aux Sanctions pour que je puisse bien m’approprier le contexte métier et les exigences réglementaires.
+	•	Une formation LUCID/Trino pour exploiter au mieux les données du quartier IGAD et maximiser l’efficacité des requêtes.
+	4.	Sur le plan organisationnel,
+	•	Une gouvernance mensuelle avec les correspondants S&E est prévue pour garder le cap, valider les priorités et ajuster au fil de l’eau.
+	•	Un template de fiche de cadrage par contrôle est en cours de conception, avec une structure claire : inputs, règles, algo, workflow, hypothèses, points d’attention et résultats attendus. Cela nous permettra d’industrialiser les spécifications et de mieux documenter les contrôles.
+	5.	Enfin, pour créer un lien fort avec le terrain,
+	•	Une intégration dans une mission S&E de la vague 3 est envisagée pour que je puisse comprendre les attentes opérationnelles, les contraintes et les usages réels.
+	•	Et plus globalement, on souhaite valider une démarche itérative, proche de l’agile, pour livrer vite, tester, ajuster, et prioriser les chantiers selon les retours d’usage.”*
+
+⸻
+
+Souhaites-tu une version courte adaptée pour une slide ou un support écrit ?
