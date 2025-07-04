@@ -1,0 +1,45 @@
+Voici une version plus fluide, structurée et convaincante de ce que tu veux dire, que tu peux utiliser comme script oral lors de ta présentation :
+
+⸻
+
+👉 “Pour guider nos choix de développement, nous avons mis en place, avec Éric, une table de priorisation des contrôles. Chaque ligne correspond à un contrôle potentiel, évalué selon plusieurs critères clés :
+	•	la nature des données nécessaires,
+	•	leur accessibilité,
+	•	la possibilité de répliquer le contrôle sur d’autres périmètres,
+	•	le niveau de jugement humain requis,
+	•	l’effort estimé en jours-homme,
+	•	et enfin, la fréquence d’apparition de constats sur ce type de contrôle (les findings).
+
+👉 Les résultats de cette priorisation sont visualisés via un code couleur :
+	•	En rose, les contrôles jugés prioritaires par le DAT – parce qu’ils sont à fort potentiel de généralisation et à impact métier élevé.
+	•	En bleu, ceux que nous avons jugés moins pertinents, car difficilement industrialisables ou rarement rencontrés.
+	•	En gris, les contrôles pour lesquels une analyse plus poussée reste nécessaire.
+
+⸻
+
+🎯 Focalisation sur les contrôles KYC / KYS : une priorité stratégique
+
+👉 Dans un premier temps, nous proposons de concentrer nos efforts sur les données et contrôles KYC (Know Your Customer) et KYS (Know Your Supplier).
+
+Pourquoi ?
+
+✅ Parce que ce sont des bases de données que nous connaissons bien, que nous avons déjà commencé à explorer,
+✅ Parce qu’elles occupent une place centrale dans notre schéma de données, en tant que référentiels clients / tiers,
+✅ Et surtout parce qu’elles permettent une approche beaucoup plus exhaustive et transverse dans les premiers développements : elles touchent directement les clients, les transactions, les alertes, et elles sont donc un point d’entrée structurant pour plusieurs cas d’usage.
+
+👉 À ce stade, il est important de déterminer un premier périmètre applicatif : par exemple, SGRF ou Wholesale, pour avoir une assiette claire sur laquelle développer, tester et affiner ces premiers contrôles.
+
+⸻
+
+🚀 Objectifs pour septembre
+	•	Développement et déploiement des premiers contrôles KYC/KYS,
+	•	Ingestion et structuration des données afférentes dans notre environnement cible,
+	•	Et mise en place de premiers outils d’aide à la mission pour améliorer l’efficacité opérationnelle,
+	•	comme l’extraction automatisée de KPI depuis les reportings RTB,
+	•	ou encore l’analyse automatisée du Normative Framework.
+
+🎯 Ces livrables concrets permettront de valider notre approche, d’apporter de la valeur en mission dès les premières phases, et de consolider les briques technologiques nécessaires à la montée en charge progressive des contrôles.”
+
+⸻
+
+Souhaites-tu que je transforme ça aussi en version écrite PowerPoint avec titres et puces si tu veux faire une slide de présentation de cette priorisation ?
